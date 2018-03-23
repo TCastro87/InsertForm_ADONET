@@ -1,6 +1,10 @@
 ﻿using BLL;
 using System;
 using System.Web.UI;
+using System.Data;
+using System.Data.SqlClient;
+using System.Configuration;
+
 
 
 namespace UI
@@ -9,7 +13,11 @@ namespace UI
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!this.IsPostBack)
+            {
+                this.BindGrid();
 
+            }
         }
 
         //BANCO DE DADOS E PROC
@@ -17,8 +25,8 @@ namespace UI
 
         protected void BotaoInCluir(object sender, EventArgs e)
         {
-            
-            
+
+
             //Validação dos campos
             if (string.IsNullOrEmpty(TBoxNome.Text) || (string.IsNullOrEmpty(TboxEnd.Text)))
             {
@@ -30,7 +38,7 @@ namespace UI
             {
                 Regra pBAL = new Regra();
                 string ParametroNOME = TBoxNome.Text;
-                string ParametroEND = TboxEnd.Text;               
+                string ParametroEND = TboxEnd.Text;
 
                 try
                 {
@@ -52,11 +60,31 @@ namespace UI
 
             //limpar campos
             Response.Redirect(Request.Path);
-                     
 
 
-                
-                
+        }
+
+
+        private void BindGrid()
+        {
+            string String_Sql = ConfigurationManager.ConnectionStrings["String_Sql"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(String_Sql))
+            {
+                using (SqlCommand cmd = new SqlCommand("SELECT [Nome], [Email] FROM [Users]"))
+                {
+                    using (SqlDataAdapter sda = new SqlDataAdapter())
+                    {
+                        cmd.Connection = con;
+                        sda.SelectCommand = cmd;
+                        using (DataTable dt = new DataTable())
+                        {
+                            sda.Fill(dt);
+                            GridView1.DataSource = dt;
+                            GridView1.DataBind();
+                        }
+                    }
+                }
             }
         }
     }
+}
