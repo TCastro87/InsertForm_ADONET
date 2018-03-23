@@ -1,0 +1,35 @@
+﻿USE [Teste]
+GO
+
+
+CREATE TABLE [dbo].[Users](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[nome] [nvarchar](max) NULL,
+	[email] [nvarchar](max) NULL)
+  
+  
+  
+CREATE PROCEDURE sp_insert_user
+       @PNome						   VARCHAR(MAX), 
+       @PEmail                         VARCHAR(15) 
+                    
+AS 
+BEGIN 
+     SET NOCOUNT ON 
+
+     INSERT INTO Users
+          ( 
+            nome                  ,
+            email                   
+			             
+          ) 
+
+     VALUES 
+          ( 
+            @PNome                   ,
+            @PEmail                 
+          ) 
+
+END 
+
+GO
