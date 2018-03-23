@@ -1,0 +1,34 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="~/Site.Master.cs" Inherits="TresCamadasAdoNet.SiteMaster" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head runat="server">
+    <title></title>
+    <link href="~/Styles/Site.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body style="border: 2px solid #cccccc; width: 100%; height: 100%; overflow: hidden;">
+    <form runat="server">
+    <div class="page" style="height: 600px;">
+        <div class="header">
+            <div class="title">
+                <h1>
+                    <%--<asp:Label ID="Label1" runat="server" Text="Cadastro Usuário" ForeColor="#003399"></asp:Label>--%>
+                    
+                </h1>
+            </div>
+            <div class="clear hideSkiplink">
+            </div>
+        </div>
+        <div class="main">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+        </div>
+        <div class="clear">
+        </div>
+         <h1>
+                    <asp:Label ID="Label2" runat="server" Text="Dev.Tiago Castro" ForeColor="#003399" Font-Size="Medium"></asp:Label> 
+                </h1>
+    </div>
+    </form>
+</body>
+</html>
